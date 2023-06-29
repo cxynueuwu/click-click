@@ -2,26 +2,104 @@ body {
     background-color: var(--main);
 }
 
-#container {
+button {
+    border: var(--light) 1px;
+    padding: 1%;
+    border-radius: 10%;
+}
+
+.notification {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    color: var(--error);
+    border-radius: 4px;
+    z-index: 999;
+}
+
+#container,
+#main-game {
     display: flex;
     flex-direction: column;
 }
 
 #main-game {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 #clicker {
     cursor: pointer;
+    position: relative;
+}
+
+#exit {
+    position: relative;
+    z-index: 100 !important;
+}
+
+#helper button {
+    float: right;
+}
+
+#friends,
+#friends-overlay {
+    position: fixed;
+}
+
+#friends,
+#friends table,
+#friends button {
+    z-index: 99;
+}
+
+#friends {
+    width: 85%;
+    height: 90%;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 99;
+}
+
+#friends-overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark);
+    filter: opacity(0.4);
 }
 
 
-#potato-image.bigger {
-    transform: scale(1.1);
-    filter: brightness(1.1);
+#friends table {
+    position: relative;
+    top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 2px dashed var(--light);
+    text-align: center;
+}
+
+#friends tr:nth-child(odd) th {
+    color: var(--light)
+}
+
+#friends tr:nth-child(even) {
+    background-color: var(--light)
+}
+
+#friends table button {
+    margin: auto;
+    display: block;
+    position: relative;
+    width: 100%;
 }
 
 #potato-image:hover {

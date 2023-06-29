@@ -20,6 +20,32 @@
             </p>
         </div>
 
+        <div id="helper">
+            <button onclick="showFriend()">Friends></button>
+            <div id="friends" class="hide">
+                <span id="friends-overlay"></span>
+                <button id="exit" onclick="showFriend()">X</button>
+                <table>
+                    <tr>
+                        <th>Potato Friends</th>
+                        <th>Upgrade</th>
+                    </tr>
+                    <tr>
+                        <th>Just Potato</th>
+                        <th><button class="inviteBtn" onclick="inviteFriend(50)">Invite</button></th>
+                    </tr>
+                    <tr>
+                        <th>Little Potato</th>
+                        <th><button class="inviteBtn" onclick="inviteFriend(100)">Invite</button></th>
+                    </tr>
+                    <tr>
+                        <th>Cute Potato</th>
+                        <th><button class="inviteBtn" onclick="inviteFriend(150)">Invite</button></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
         <div id="main-game">
             <div id="counter">
                 <h1 id="click-count">0</h1>
@@ -29,10 +55,19 @@
             </div>
         </div>
 
-        <div id="options">
-            <input type="checkbox" name="no-shack" id="no-shack" onchange="noShack()">
-            <label for="no-shack">Disable Shaking</label>
-            <button id="spin-btn" onclick="spin()">Spin!</button>
+        <div id="option-menu">
+            <button onclick="showOption()">Options></button>
+            <div id="options" class="hide">
+                <ul>
+                    <li>
+                        <input type="checkbox" name="shack" id="shack" onchange="noShack()" checked>
+                        <label for="shack">Shaking</label>
+                    </li>
+                    <li>
+                        <button id="spin-btn" onclick="spin()">Spin!</button>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
