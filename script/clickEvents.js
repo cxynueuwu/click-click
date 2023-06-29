@@ -41,7 +41,7 @@ function spin() {
     setTimeout(function () {
         var audio = new Audio('./sound/spin-sound.mp3');
         audio.play();
-    }, 900)
+    }, 850)
 
     setTimeout(function () {
         potatoImage.style.animation = "";

@@ -51,10 +51,6 @@ body {
 }
 
 @keyframes spin {
-    0% {
-        
-    }
-
     25% {
         transform: rotate(40deg) scaleY(0.8);
     }
