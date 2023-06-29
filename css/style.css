@@ -52,18 +52,19 @@ body {
 
 @keyframes spin {
     0% {
-        transform: rotate(0deg);
+        
     }
 
     25% {
-        transform: rotate(-5deg);
+        transform: rotate(40deg) scaleY(0.8);
     }
 
     50% {
-        transform: rotate(5deg);
+        transform: rotate(-40deg) scaleY(1.1);
     }
 
     100% {
         transform: rotate(720deg);
+        filter: opacity(0.7);
     }
 }

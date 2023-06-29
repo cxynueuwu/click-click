@@ -34,7 +34,7 @@ function noShack() {
 
 function spin() {
     var potatoImage = document.getElementById("potato-image");
-    potatoImage.style.animation = "spin 2s 1 normal";
+    potatoImage.style.animation = "spin 2s 1 ease-in-out normal";
     var options = document.getElementById("options");
     options.style.display = "none";
 
