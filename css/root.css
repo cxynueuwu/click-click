@@ -1,0 +1,48 @@
+:root {
+    --main: #ffb7c5;
+    --dark: #1c1c1c;
+    --light: #ffffff;
+
+    --error: #00483a;
+}
+
+* {
+    overflow: hidden;
+    user-select: none;
+}
+
+h1 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: var(--light);
+    animation: glow 2s infinite ease-in-out;
+}
+
+h2,
+h3,
+h4,
+p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+    color: var(--dark);
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: var(--light) 0px 0px 50px;
+    }
+
+    25% {
+        text-shadow: var(--main) 0px 0px 80px;
+    }
+
+    50% {
+        text-shadow: var(--light) 0px 0px 50px;
+    }
+
+    75% {
+        text-shadow: var(--main) 0px 0px 80px;
+    }
+
+    100% {
+        text-shadow: var(--light) 0px 0px 50px;
+    }
+}

@@ -1,0 +1,69 @@
+body {
+    background-color: var(--main);
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+}
+
+#main-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#clicker {
+    cursor: pointer;
+}
+
+
+#potato-image.bigger {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+#potato-image:hover {
+    animation: shake 2s infinite normal;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(720deg);
+    }
+}

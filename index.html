@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/root.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Click the Click</title>
+    <script src="./script/clickEvents.js" defer></script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="info">
+            <p>test info:
+                <span class="info-message">GUGUGAGA</span>
+            </p>
+        </div>
+
+        <div id="main-game">
+            <div id="counter">
+                <h1 id="click-count">0</h1>
+            </div>
+            <div id="clicker">
+                <img id="potato-image" src="./picture/potato-1.png" alt="Potato!" onclick="incrementClickCount()">
+            </div>
+        </div>
+
+        <div id="options">
+            <input type="checkbox" name="no-shack" id="no-shack" onchange="noShack()">
+            <label for="no-shack">Disable Shaking</label>
+            <button id="spin-btn" onclick="spin()">Spin!</button>
+        </div>
+    </div>
+</body>
+
+</html>
