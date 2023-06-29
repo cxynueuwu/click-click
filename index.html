@@ -51,7 +51,8 @@
                 <h1 id="click-count">0</h1>
             </div>
             <div id="clicker">
-                <img id="potato-image" src="./picture/potato-1.png" alt="Potato!" onclick="incrementClickCount()">
+                <img draggable="false" (dragstart)="false;" id="potato-image" src="./picture/potato-1.png" alt="Potato!"
+                    onclick="incrementClickCount()">
             </div>
         </div>
 

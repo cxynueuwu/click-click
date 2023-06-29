@@ -15,6 +15,7 @@ function incrementClickCount() {
     }
 
     var audio = new Audio('./sound/click-sound.mp3');
+    audio.volume = 0.4;
     audio.play();
 
     setTimeout(function () {
@@ -48,16 +49,16 @@ function inviteFriend(potatoes) {
         clickCountElement.textContent = leftValue;
         var content = "Thanks for the potatoes!"
         var audio = new Audio('./sound/upgrade-sound.mp3');
-        audio.play();
     } else {
         var content = "Sorry, but you don't have enough potato...";
         var audio = new Audio('./sound/error-sound.mp3');
-        audio.play();
     }
     const notification = document.createElement('div');
     notification.textContent = content;
     notification.classList.add('notification');
     document.body.appendChild(notification);
+    audio.volume = 0.4;
+    audio.play();
 
     setTimeout(() => {
         document.body.removeChild(notification);

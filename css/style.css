@@ -35,6 +35,11 @@ button {
 #clicker {
     cursor: pointer;
     position: relative;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #exit {
@@ -73,7 +78,6 @@ button {
     background-color: var(--dark);
     filter: opacity(0.4);
 }
-
 
 #friends table {
     position: relative;
