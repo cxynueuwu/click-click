@@ -14,3 +14,11 @@ This was a random idea about making a potato clicking game for my family, becaus
 * Clicking
 * *Helpers?*
 * *Cool Stuff?*
+
+# Updates: 
+
+### Vision 0.1 2023/06/29 
+
+This is the first vision, it has basic functions, but only with javascript!
+
+i hope in the future, we can use php or another language to rewrite it, to make it more safer and stabilize.
