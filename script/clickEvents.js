@@ -1,26 +1,16 @@
-function incrementClickCount() {
-    var potatoImage = document.getElementById("potato-image");
-    var clickCountElement = document.getElementById("click-count");
-    var currentValue = parseInt(clickCountElement.textContent);
-    clickCountElement.textContent = currentValue + 1;
+var additionPotato = 1;
+var isSoundPlaying = false;
 
-    if (!potatoImage.classList.contains("bigger")) {
-        potatoImage.classList.add("bigger");
-
-    } else {
-        potatoImage.classList.remove("bigger");
-        setTimeout(function () {
-            potatoImage.classList.add("bigger");
-        }, 100);
+function playSound(soundFile) {
+    if (!isSoundPlaying) {
+        var audio = new Audio(soundFile);
+        audio.volume = 0.4;
+        audio.play();
+        isSoundPlaying = true;
+        audio.onended = function () {
+            isSoundPlaying = false;
+        };
     }
-
-    var audio = new Audio('./sound/click-sound.mp3');
-    audio.volume = 0.4;
-    audio.play();
-
-    setTimeout(function () {
-        potatoImage.classList.remove("bigger");
-    }, 500);
 }
 
 function showOption() {
@@ -47,23 +37,64 @@ function inviteFriend(potatoes) {
     var leftValue = currentValue - potatoes;
     if (leftValue >= 0) {
         clickCountElement.textContent = leftValue;
-        var content = "Thanks for the potatoes!"
-        var audio = new Audio('./sound/upgrade-sound.mp3');
+        smallNumberGen("-", potatoes);
+        var content = "Thanks for the potatoes!";
+        playSound('./sound/upgrade-sound.mp3');
+        additionPotato = additionPotato + 1;
     } else {
         var content = "Sorry, but you don't have enough potato...";
-        var audio = new Audio('./sound/error-sound.mp3');
+        playSound('./sound/error-sound.mp3');
     }
     const notification = document.createElement('div');
     notification.textContent = content;
     notification.classList.add('notification');
     document.body.appendChild(notification);
-    audio.volume = 0.4;
-    audio.play();
 
     setTimeout(() => {
         document.body.removeChild(notification);
     }, 1000);
+}
 
+function incrementClickCount() {
+    var potatoImage = document.getElementById("potato-image");
+    var clickCountElement = document.getElementById("click-count");
+    var currentValue = parseInt(clickCountElement.textContent);
+    clickCountElement.textContent = currentValue + additionPotato;
+
+    smallNumberGen("+", additionPotato);
+
+    if (!potatoImage.classList.contains("bigger")) {
+        potatoImage.classList.add("bigger");
+    } else {
+        potatoImage.classList.remove("bigger");
+        setTimeout(function () {
+            potatoImage.classList.add("bigger");
+        }, 100);
+    }
+
+    var audio = new Audio('./sound/click-sound.mp3');
+    audio.volume = 0.4;
+    audio.play();
+
+    setTimeout(function () {
+        potatoImage.classList.remove("bigger");
+    }, 500);
+}
+
+function smallNumberGen(plusorminus ,popnum) {
+    // Pop-Up numbers
+    var smallNumberElement = document.createElement("h1");
+    smallNumberElement.classList.add("small-number");
+    smallNumberElement.textContent = plusorminus + popnum;
+    document.getElementById("counter").appendChild(smallNumberElement);
+    // Generate random coordinates within the desired area
+    var areaWidth = screen.width;
+    var randomX = Math.floor(Math.random() * (areaWidth - 10));
+    smallNumberElement.style.left = randomX + "px";
+
+    setTimeout(function () {
+        document.getElementById("counter").removeChild(smallNumberElement);
+    }, 900);
 }
 
 function noShack() {
@@ -83,12 +114,11 @@ function spin() {
     options.style.display = "none";
 
     setTimeout(function () {
-        var audio = new Audio('./sound/spin-sound.mp3');
-        audio.play();
-    }, 850)
+        playSound('./sound/spin-sound.mp3');
+    }, 850);
 
     setTimeout(function () {
         potatoImage.style.animation = "";
-        options.style.display = ""
-    }, 2000)
+        options.style.display = "";
+    }, 2000);
 }
