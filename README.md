@@ -22,3 +22,9 @@ This was a random idea about making a potato clicking game for my family, becaus
 This is the first vision, it has basic functions, but only with javascript!
 
 i hope in the future, we can use php or another language to rewrite it, to make it more safer and stabilize.
+
+### Vision 0.2 2023/07/01
+
+Improved invite friends! Now it looks better and more sinful.
+
+Little change to the options, added login button, it doesn't work :(
