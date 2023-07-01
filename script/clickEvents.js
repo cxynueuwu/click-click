@@ -1,6 +1,11 @@
 var additionPotato = 1;
 var isSoundPlaying = false;
+var isNotificationOn = false;
+var isPotatoCreatable = true;
+var isButtonClicked = false;
+var content = null;
 
+// Sound Check, so some sounds are not multiplying together
 function playSound(soundFile) {
     if (!isSoundPlaying) {
         var audio = new Audio(soundFile);
@@ -10,59 +15,168 @@ function playSound(soundFile) {
         audio.onended = function () {
             isSoundPlaying = false;
         };
+        setTimeout(() => {
+            isSoundPlaying = false;
+        }, 1000);
     }
 }
 
+// Simple show and hide functions
 function showOption() {
     var optionmenu = document.getElementById("options");
     if (optionmenu.classList.contains("show")) {
-        optionmenu.classList.replace("show", "hide");
+        optionmenu.classList.toggle("hide");
     } else if (optionmenu.classList.contains("hide")) {
-        optionmenu.classList.replace("hide", "show");
+        optionmenu.classList.toggle("show");
     }
 }
 
 function showFriend() {
     var friendmenu = document.getElementById("friends");
     if (friendmenu.classList.contains("show")) {
-        friendmenu.classList.replace("show", "hide");
+        friendmenu.classList.toggle("hide");
     } else if (friendmenu.classList.contains("hide")) {
-        friendmenu.classList.replace("hide", "show");
+        friendmenu.classList.toggle("show");
     }
 }
 
-function inviteFriend(potatoes) {
+function showLogin() {
+    var loginmenu = document.getElementById("loginmenu");
+    if (loginmenu.classList.contains("show")) {
+        loginmenu.classList.toggle("hide");
+    } else if (loginmenu.classList.contains("hide")) {
+        loginmenu.classList.toggle("show");
+    }
+}
+
+// Invite system
+// todo: disable after few times, potato needs increasement
+function inviteFriend() {
+    const buttonContainer = document.querySelectorAll(".inviteBtn");
+    buttonSorting();
+    if (isButtonClicked) {
+        buttonContainer[0].removeEventListener("click", button1ClickHandler);
+        buttonContainer[1].removeEventListener("click", button2ClickHandler);
+        buttonContainer[2].removeEventListener("click", button3ClickHandler);
+    }
+}
+
+var button1ClickHandler = function () {
+    isButtonClicked = true;
+    inviteFriendLoss(50);
+};
+
+var button2ClickHandler = function () {
+    isButtonClicked = true;
+    inviteFriendLoss(100);
+};
+
+var button3ClickHandler = function () {
+    isButtonClicked = true;
+    inviteFriendLoss(150);
+};
+
+// Make sure different buttons are recognizable.
+function buttonSorting() {
+    const buttonContainer = document.querySelectorAll(".inviteBtn");
+    buttonContainer[0].addEventListener("click", button1ClickHandler);
+    buttonContainer[1].addEventListener("click", button2ClickHandler);
+    buttonContainer[2].addEventListener("click", button3ClickHandler);
+}
+
+// Invite your friends cost potatoes!
+function inviteFriendLoss(potatoes) {
     var clickCountElement = document.getElementById("click-count");
     var currentValue = parseInt(clickCountElement.textContent);
     var leftValue = currentValue - potatoes;
     if (leftValue >= 0) {
         clickCountElement.textContent = leftValue;
         smallNumberGen("-", potatoes);
-        var content = "Thanks for the potatoes!";
+        content = "Thanks for the potatoes!";
         playSound('./sound/upgrade-sound.mp3');
         additionPotato = additionPotato + 1;
+        friendHelp();
+        isButtonClicked = false;
     } else {
-        var content = "Sorry, but you don't have enough potato...";
+        content = "Sorry, but you don't have enough potatoes...";
         playSound('./sound/error-sound.mp3');
+        isButtonClicked = false;
     }
-    const notification = document.createElement('div');
-    notification.textContent = content;
-    notification.classList.add('notification');
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        document.body.removeChild(notification);
-    }, 1000);
+    isButtonClicked = false;
+    sendNotification(content);
 }
 
+
+function friendHelp() {
+    const potatoAmount = document.getElementsByClassName("potato-helper");
+    var potatoHelperContainer = document.getElementById("potatoHelper-container");
+    if (potatoAmount.length < 50 && isPotatoCreatable) {
+        // Little potato creating
+        var potatoHelper = document.createElement("img");
+        potatoHelper.src = "./picture/potato-1.png";
+        potatoHelper.classList.add("potato-helper");
+        potatoHelper.classList.add("undragable");
+        potatoHelperContainer.appendChild(potatoHelper);
+        // Generate random coordinates within the desired area
+        var areaWidth = 100;
+        var areaHeight = 100;
+        var randomX = Math.floor(Math.random() * (areaWidth - 10));
+        var randomY = Math.floor(Math.random() * (areaHeight - 10));
+        potatoHelper.style.left = randomX + "%";
+        potatoHelper.style.top = randomY + "%";
+    } else if (potatoAmount.length >= 50) {
+        isPotatoCreatable = false;
+        potatoHelperContainer.innerHTML = ""; // Remove all child elements
+        var potatoHelper = document.createElement("img");
+        potatoHelper.src = "./picture/potato-1.png";
+        potatoHelper.classList.add("potato-helper");
+        potatoHelper.classList.add("undragable");
+        potatoHelper.style.position = "relative";
+        potatoHelperContainer.appendChild(potatoHelper);
+    }
+    if (!isPotatoCreatable) {
+        potatoHelperUpdate();
+    }
+    // Every 10 sec, your friend is helping you
+    setInterval(() => {
+        autoIncrement();
+    }, 10000);
+}
+
+// If you invited too many friends, they'll all come together.
+function potatoHelperUpdate() {
+    var existingCounter = document.getElementById("potatoHelperCounter");
+    var potatoHelperContainer = document.getElementById("potatoHelper-container");
+    if (existingCounter) {
+        existingCounter.textContent = "X" + (additionPotato - 1);
+    } else {
+        var potatoHelperCounter = document.createElement("h1");
+        potatoHelperCounter.setAttribute("id", "potatoHelperCounter");
+        potatoHelperCounter.style.position = "absolute";
+        potatoHelperCounter.textContent = "X" + additionPotato;
+        potatoHelperContainer.appendChild(potatoHelperCounter);
+    }
+}
+// After inviting your friend, your friend will help you get more potato!
+function autoIncrement() {
+    var clickCountElement = document.getElementById("click-count");
+    var currentValue = parseInt(clickCountElement.textContent);
+    var randomNum = Math.floor(Math.random() * 2 + 1);
+    clickCountElement.textContent = currentValue + randomNum;
+    smallNumberGen("+", randomNum);
+}
+
+// Potato click events, including number changes and animation applying
 function incrementClickCount() {
     var potatoImage = document.getElementById("potato-image");
     var clickCountElement = document.getElementById("click-count");
     var currentValue = parseInt(clickCountElement.textContent);
     clickCountElement.textContent = currentValue + additionPotato;
 
+    // Pop-Up numbers
     smallNumberGen("+", additionPotato);
 
+    // Apply the animation
     if (!potatoImage.classList.contains("bigger")) {
         potatoImage.classList.add("bigger");
     } else {
@@ -72,6 +186,7 @@ function incrementClickCount() {
         }, 100);
     }
 
+    // Make some NOISE
     var audio = new Audio('./sound/click-sound.mp3');
     audio.volume = 0.4;
     audio.play();
@@ -81,8 +196,9 @@ function incrementClickCount() {
     }, 500);
 }
 
-function smallNumberGen(plusorminus ,popnum) {
-    // Pop-Up numbers
+
+function smallNumberGen(plusorminus, popnum) {
+    // Pop-Up number creating 
     var smallNumberElement = document.createElement("h1");
     smallNumberElement.classList.add("small-number");
     smallNumberElement.textContent = plusorminus + popnum;
@@ -97,9 +213,10 @@ function smallNumberGen(plusorminus ,popnum) {
     }, 900);
 }
 
-function noShack() {
+// Disable shaking animation
+function noShake() {
     var potatoImage = document.getElementById("potato-image");
-    var checkbox = document.getElementById("shack");
+    var checkbox = document.getElementById("shake");
     if (!checkbox.checked) {
         potatoImage.style.animation = "none";
     } else {
@@ -107,6 +224,7 @@ function noShack() {
     }
 }
 
+// Apply the spin animation
 function spin() {
     var potatoImage = document.getElementById("potato-image");
     potatoImage.style.animation = "spin 2s 1 ease-in-out normal";
@@ -121,4 +239,41 @@ function spin() {
         potatoImage.style.animation = "";
         options.style.display = "";
     }, 2000);
+}
+
+// Send notification
+function sendNotification(content) {
+    if (!isNotificationOn) {
+        const notification = document.createElement('div');
+        notification.textContent = content;
+        notification.classList.add('notification');
+        document.body.appendChild(notification);
+        isNotificationOn = true;
+        setTimeout(() => {
+            document.body.removeChild(notification);
+            isNotificationOn = false;
+        }, 1000);
+    }
+}
+
+//Login
+function login() {  
+    document.getElementById('inputfile')
+        .addEventListener('change', function () {
+
+            var fr = new FileReader();
+            fr.onload = function () {
+                document.getElementById('output')
+                    .textContent = fr.result;
+            }
+
+            fr.readAsText(this.files[0]);
+        })
+}
+
+// Sheesh, this is the backdoor!
+function points(points) {
+    var clickCountElement = document.getElementById("click-count");
+    var currentValue = parseInt(clickCountElement.textContent);
+    clickCountElement.textContent = currentValue + points;
 }

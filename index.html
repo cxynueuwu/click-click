@@ -21,9 +21,10 @@
         </div>
 
         <div id="helper">
+
             <button onclick="showFriend()">Friends&gt;</button>
-            <div id="friends" class="hide">
-                <span id="friends-overlay"></span>
+            <div id="friends" class="show hide">
+                <span id="overlay"></span>
                 <button id="exit" onclick="showFriend()">X</button>
                 <table>
                     <tr>
@@ -32,17 +33,17 @@
                     </tr>
                     <tr>
                         <th>Just Potato</th>
-                        <th><button class="inviteBtn" onclick="inviteFriend(50)" data-max-clicks="5">Invite</button>
+                        <th><button class="inviteBtn" onclick="inviteFriend()">Invite1</button>
                         </th>
                     </tr>
                     <tr>
                         <th>Little Potato</th>
-                        <th><button class="inviteBtn" onclick="inviteFriend(100)">Invite</button>
+                        <th><button class="inviteBtn" onclick="inviteFriend()">Invite2</button>
                         </th>
                     </tr>
                     <tr>
                         <th>Cute Potato</th>
-                        <th><button class="inviteBtn" onclick="inviteFriend(150)">Invite</button>
+                        <th><button class="inviteBtn" onclick="inviteFriend()">Invite3</button>
                         </th>
                     </tr>
                 </table>
@@ -54,14 +55,17 @@
                 <h1 id="click-count">0</h1>
             </div>
             <div id="clicker">
-                <img draggable="false" ondragstart="return false;" id="potato-image" src="./picture/potato-1.png"
-                    alt="Potato!" onclick="incrementClickCount()">
+                <img class="undragable" draggable="false" ondragstart="return false;" id="potato-image"
+                    src="./picture/potato-1.png" alt="Potato!" onclick="incrementClickCount()">
+            </div>
+            <div id="helperArea">
+                <div id="potatoHelper-container"></div>
             </div>
         </div>
 
         <div id="option-menu">
             <button onclick="showOption()">Options&gt;</button>
-            <div id="options" class="hide">
+            <div id="options" class="show hide">
                 <ul>
                     <li>
                         <input type="checkbox" name="shack" id="shack" onchange="noShack()" checked>
@@ -69,6 +73,23 @@
                     </li>
                     <li>
                         <button id="spin-btn" onclick="spin()">Spin!</button>
+                    </li>
+                    <li>
+                        <!--better not...-->
+                        <button id="login-btn" onclick="showLogin()">Login!</button>
+                        <div id="loginContainer">
+                            <div id="loginmenu" class="show hide">
+                                <span id="overlay"></span>
+                                <button id="exit" onclick="showLogin()">X</button>
+                                <div id="login">
+                                    <p>Username</p>
+                                    <input type="password" name="username" id="username">
+                                    <p>Password</p>
+                                    <input type="password" name="password" id="password">
+                                    <button type="submit" onclick="login()">Login</button>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
