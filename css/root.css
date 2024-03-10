@@ -37,6 +37,10 @@ h1 {
     display: none;
 }
 
+.pointerchange {
+    cursor: pointer;
+}
+
 @keyframes glow {
     0% {
         text-shadow: var(--light) 0px 0px 10px;

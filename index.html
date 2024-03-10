@@ -54,7 +54,7 @@
             <div id="counter">
                 <h1 id="click-count">0</h1>
             </div>
-            <div id="clicker">
+            <div class="pointerchange" id="clicker">
                 <img class="undragable" draggable="false" ondragstart="return false;" id="potato-image"
                     src="./picture/potato-1.png" alt="Potato!" onclick="incrementClickCount()">
             </div>
@@ -86,7 +86,7 @@
                                     <input type="text" name="userID" id="userID">
                                     <button type="submit" onclick="login()">Login</button>
                                     <button type="submit" onclick="register()">Register</button>
-                                    <button type="submit">DL My Data</button>
+                                    <button type="submit" onclick="removeCookie()">DL My Data</button>
                                 </div>
                             </div>
                         </div>

@@ -263,13 +263,17 @@ function setCookie(userID, potatoAmount) {
 // Login
 function login() {
   var userInput = document.getElementById("userID").value;
-  if (document.cookie.match(userInput)) {
+  if (document.cookie.match(userInput) && userInput != null) {
     let cookieDecoded = decodeURIComponent(document.cookie);
     let cookieSplited = cookieDecoded.split(";");
     for (let i = 0; i < cookieSplited.length; i++) {
       let cookieReader = cookieSplited[i];
       while (cookieReader.charAt(0) == ' ') {
         cookieReader = cookieReader.substring(1);
+        if (cookieReader.includes("pAmount")) {
+          sendNotification(cookieReader);
+          break; // Exit loop after finding pAmount
+        }
       }
       sendNotification(cookieSplited[i]);
     }
@@ -277,12 +281,23 @@ function login() {
     sendNotification("Seems like we did not find the cookie! i wonder...");
   }
 }
+
+function setPotatoes(potatoAmount) {
+  
+}
+
 // Register
 function register() {
   var randomNr = Math.floor(Math.random() * 1000);
   var potatoAmount = document.getElementById("click-count").innerText;
   setCookie(randomNr, potatoAmount);
   sendNotification(randomNr + " is ur ID! Take care of it!");
+}
+
+function removeCookie() {
+  document.cookie = "userNr=" + null;
+  document.cookie = "pAmount=" + null;
+  document.cookie = "pAddition= " + null;
 }
 
 // Sheesh, this is the backdoor!
