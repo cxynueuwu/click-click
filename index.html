@@ -1,100 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/root.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="shortcut icon" href="./picture/potato.ico" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/root.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="shortcut icon" href="./picture/potato.ico" type="image/x-icon" />
     <title>Click the Click</title>
-    <script src="./script/clickEvents.js" defer></script>
-</head>
+    <script type="module" src="./script/clickEvents.js" defer></script>
+  </head>
 
-<body>
+  <body>
     <div id="container">
-        <div id="info">
-            <p>test info:
-                <span class="info-message"></span>
-            </p>
-        </div>
+      <div id="info">
+        <p id="info-message">test info:</p>
+      </div>
 
-        <div id="helper">
-
-            <button onclick="showFriend()">Friends&gt;</button>
-            <div id="friends" class="show hide">
-                <span id="overlay"></span>
-                <button id="exit" onclick="showFriend()">X</button>
-                <table>
-                    <tr>
-                        <th>Potato Friends</th>
-                        <th>Upgrade</th>
-                    </tr>
-                    <tr>
-                        <th>Just Potato</th>
-                        <th><button class="inviteBtn" onclick="inviteFriend()">Invite1</button>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>Little Potato</th>
-                        <th><button class="inviteBtn" onclick="inviteFriend()">Invite2</button>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>Cute Potato</th>
-                        <th><button class="inviteBtn" onclick="inviteFriend()">Invite3</button>
-                        </th>
-                    </tr>
-                </table>
-            </div>
+      <div id="helper">
+        <button onclick="showFriend()">Friends&gt;</button>
+        <div id="friends" class="show hide">
+          <span id="overlay"></span>
+          <button id="exit" onclick="showFriend()">X</button>
+          <table>
+            <tr>
+              <th>Potato Friends</th>
+              <th>Upgrade</th>
+            </tr>
+            <tr>
+              <th>Just Potato</th>
+              <th>
+                <button class="inviteBtn" onclick="inviteFriend()">
+                  Invite1
+                </button>
+              </th>
+            </tr>
+            <tr>
+              <th>Little Potato</th>
+              <th>
+                <button class="inviteBtn" onclick="inviteFriend()">
+                  Invite2
+                </button>
+              </th>
+            </tr>
+            <tr>
+              <th>Cute Potato</th>
+              <th>
+                <button class="inviteBtn" onclick="inviteFriend()">
+                  Invite3
+                </button>
+              </th>
+            </tr>
+          </table>
         </div>
+      </div>
 
-        <div id="main-game">
-            <div id="counter">
-                <h1 id="click-count">0</h1>
-            </div>
-            <div class="pointerchange" id="clicker">
-                <img class="undragable" draggable="false" ondragstart="return false;" id="potato-image"
-                    src="./picture/potato-1.png" alt="Potato!" onclick="incrementClickCount()">
-            </div>
-            <div id="helperArea">
-                <div id="potatoHelper-container"></div>
-            </div>
+      <div id="main-game">
+        <div id="counter">
+          <h1 id="click-count">0</h1>
         </div>
+        <div class="pointerchange" id="clicker">
+          <img
+            class="undragable"
+            draggable="false"
+            ondragstart="return false;"
+            id="potato-image"
+            src="./picture/potato-1.png"
+            alt="Potato!"
+            onclick="incrementClickCount()"
+          />
+        </div>
+        <div id="helperArea">
+          <div id="potatoHelper-container"></div>
+        </div>
+      </div>
 
-        <div id="option-menu">
-            <button onclick="showOption()">Options&gt;</button>
-            <div id="options" class="show hide">
-                <ul>
-                    <li>
-                        <input type="checkbox" name="shake" id="shake" onchange="noShake()" checked>
-                        <label for="shack">Shaking</label>
-                    </li>
-                    <li>
-                        <button id="spin-btn" onclick="spin()">Spin!</button>
-                    </li>
-                    <li>
-                        <!--better not...-->
-                        <button id="login-btn" onclick="showLogin()">Login!</button>
-                        <div id="loginContainer">
-                            <div id="loginmenu" class="show hide">
-                                <span id="overlay"></span>
-                                <button id="exit" onclick="showLogin()">X</button>
-                                <div id="login">
-                                    <p>UserID</p>
-                                    <input type="text" name="userID" id="userID">
-                                    <button type="submit" onclick="login()">Login</button>
-                                    <button type="submit" onclick="register()">Register</button>
-                                    <button type="submit" onclick="removeCookie()">DL My Data</button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+      <div id="option-menu">
+        <button onclick="showOption()">Options&gt;</button>
+        <div id="options" class="show hide">
+          <ul>
+            <li>
+              <input
+                type="checkbox"
+                name="shake"
+                id="shake"
+                onchange="noShake()"
+                checked
+              />
+              <label for="shack">Shaking</label>
+            </li>
+            <li>
+              <button id="spin-btn" onclick="spin()">Spin!</button>
+            </li>
+            <li>
+              <!--better not...-->
+              <button id="login-btn" onclick="showLogin()">Login!</button>
+              <div id="loginContainer">
+                <div id="loginmenu" class="show hide">
+                  <span id="overlay"></span>
+                  <button id="exit" onclick="showLogin()">X</button>
+                  <div id="login">
+                    <p>UserID</p>
+                    <input type="text" name="userID" id="userID" />
+                    <button type="submit" onclick="login()">Login</button>
+                    <button type="submit" onclick="register()">Register</button>
+                    <button type="submit" onclick="removeCookie()">
+                      DL My Data
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

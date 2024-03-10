@@ -5,8 +5,8 @@ var isPotatoCreatable = true;
 var isButtonClicked = false;
 var content = null;
 
-import {info} from 'info.js';
-document.getElementsByClassName("info-message").textContent = info;
+import { info } from "./info.js";
+document.getElementById("info-message").textContent = info;
 
 // Sound Check, so some sounds are not multiplying together
 function playSound(soundFile) {
@@ -276,7 +276,7 @@ function login() {
       }
       if (cookieReader.includes("pAmount")) {
         sendNotification(cookieReader.split("=")[1]);
-        setPotatoes(cookieReader.split("=")[1])
+        setPotatoes(cookieReader.split("=")[1]);
         break; // Exit loop after finding pAmount
       }
     }
