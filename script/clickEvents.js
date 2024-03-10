@@ -213,12 +213,12 @@ function smallNumberGen(plusorminus, popnum) {
 
 // Disable shaking animation
 function noShake() {
-  var potatoImage = document.getElementById("potato-image");
+  var clicker = document.getElementById("clicker");
   var checkbox = document.getElementById("shake");
   if (!checkbox.checked) {
-    potatoImage.style.animation = "none";
+    clicker.style.animation = "none";
   } else {
-    potatoImage.style.animation = "";
+    clicker.style.animation = "";
   }
 }
 

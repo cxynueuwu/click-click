@@ -141,7 +141,7 @@ button {
     width: 100%;
 }
 
-#potato-image:hover {
+#clicker:hover {
     animation: shake 2s infinite normal;
 }
 
