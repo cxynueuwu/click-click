@@ -268,22 +268,23 @@ function login() {
     let cookieSplited = cookieDecoded.split(";");
     for (let i = 0; i < cookieSplited.length; i++) {
       let cookieReader = cookieSplited[i];
-      while (cookieReader.charAt(0) == ' ') {
+      while (cookieReader.charAt(0) == " ") {
         cookieReader = cookieReader.substring(1);
-        if (cookieReader.includes("pAmount")) {
-          sendNotification(cookieReader);
-          break; // Exit loop after finding pAmount
-        }
       }
-      sendNotification(cookieSplited[i]);
+      if (cookieReader.includes("pAmount")) {
+        sendNotification(cookieReader.split("=")[1]);
+        setPotatoes(cookieReader.split("=")[1])
+        break; // Exit loop after finding pAmount
+      }
     }
   } else {
-    sendNotification("Seems like we did not find the cookie! i wonder...");
+    sendNotification("Seems like we did not find the cookie! I wonder...");
   }
 }
 
 function setPotatoes(potatoAmount) {
-  
+  var clickCountElement = document.getElementById("click-count");
+  clickCountElement.textContent = potatoAmount;
 }
 
 // Register
