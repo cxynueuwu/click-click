@@ -5,9 +5,6 @@ var isPotatoCreatable = true;
 var isButtonClicked = false;
 var content = null;
 
-import { info } from "./info.js";
-document.getElementById("info-message").textContent = info;
-
 // Sound Check, so some sounds are not multiplying together
 function playSound(soundFile) {
   if (!isSoundPlaying) {
