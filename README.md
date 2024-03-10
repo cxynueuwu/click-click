@@ -28,3 +28,11 @@ i hope in the future, we can use php or another language to rewrite it, to make 
 Improved invite friends! Now it looks better and more sinful.
 
 Little change to the options, added login button, it doesn't work :(
+
+### Vision 0.3 2024/03/10
+
+OMG OMG OMG i am alive again... ...
+
+Update the Login and Remove buttons, so it actually works!
+
+also some little changes with misspelling xP
