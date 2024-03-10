@@ -68,7 +68,7 @@
             <div id="options" class="show hide">
                 <ul>
                     <li>
-                        <input type="checkbox" name="shack" id="shack" onchange="noShack()" checked>
+                        <input type="checkbox" name="shake" id="shake" onchange="noShake()" checked>
                         <label for="shack">Shaking</label>
                     </li>
                     <li>
@@ -82,11 +82,11 @@
                                 <span id="overlay"></span>
                                 <button id="exit" onclick="showLogin()">X</button>
                                 <div id="login">
-                                    <p>Username</p>
-                                    <input type="password" name="username" id="username">
-                                    <p>Password</p>
-                                    <input type="password" name="password" id="password">
+                                    <p>UserID</p>
+                                    <input type="text" name="userID" id="userID">
                                     <button type="submit" onclick="login()">Login</button>
+                                    <button type="submit" onclick="register()">Register</button>
+                                    <button type="submit">DL My Data</button>
                                 </div>
                             </div>
                         </div>
