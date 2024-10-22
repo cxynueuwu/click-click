@@ -1,1 +1,1 @@
-export const info = '0.3.20240310';
+export const info = '0.3.20241023';

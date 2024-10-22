@@ -62,11 +62,13 @@ function inviteFriend() {
 }
 
 var button1ClickHandler = function () {
+  var clickCounter = 1;
   isButtonClicked = true;
-  inviteFriendLoss(50);
+  inviteFriendLoss(50 * clickCounter);
+  clickCounter++;
 };
 
-var button2ClickHandler = function () {
+/*var button2ClickHandler = function () {
   isButtonClicked = true;
   inviteFriendLoss(100);
 };
@@ -74,14 +76,14 @@ var button2ClickHandler = function () {
 var button3ClickHandler = function () {
   isButtonClicked = true;
   inviteFriendLoss(150);
-};
+};*/
 
 // Make sure different buttons are recognizable.
 function buttonSorting() {
   const buttonContainer = document.querySelectorAll(".inviteBtn");
   buttonContainer[0].addEventListener("click", button1ClickHandler);
-  buttonContainer[1].addEventListener("click", button2ClickHandler);
-  buttonContainer[2].addEventListener("click", button3ClickHandler);
+  //buttonContainer[1].addEventListener("click", button2ClickHandler);
+  //buttonContainer[2].addEventListener("click", button3ClickHandler);
 }
 
 // Invite your friends cost potatoes!
